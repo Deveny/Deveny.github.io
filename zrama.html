@@ -1,0 +1,281 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+ <title>D E V E 1 0 0 0</title>
+  <link rel="shortcut icon" href="assets/images/assets-hoofd.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Archivo+Black|Averia+Serif+Libre|Days+One|Fugaz+One|Jura|Orbitron|Racing+Sans+One|Rubik+Mono+One&display=swap" rel="stylesheet">
+
+<style>
+  
+body {
+	  text-align: center;
+	    margin: auto;
+   background-color: #000000;
+font-family: 'Archivo Black', sans-serif;
+font-family: 'Days One', sans-serif;
+font-family: 'Jura', sans-serif;
+font-family: 'Racing Sans One', cursive;
+font-family: 'Averia Serif Libre', cursive;
+font-family: 'Rubik Mono One', sans-serif;
+}
+
+#ex2 {
+	bottom:0;
+	left: 50%;
+margin-left: -40vw;
+  position: fixed;
+  height: 50vh;
+  width:80vw;
+  perspective: 500px;
+}
+
+#bottom {
+	opacity:0.7;
+	bottom:0;
+  height: 50vh;
+  width: 80vw;
+  position: absolute;
+background-image:linear-gradient(to bottom,lavender,darkslategray);
+box-shadow: 5px 5px 50px 20px darkslategray inset,-5px -5px 50px 20px black inset,5px 5px 100px 10px gold, -5px -5px 100px 10px gold,10px 10px 200px 10px orange, -10px -10px 200px 10px orange;
+  transform-style: preserve-3d;
+  transform: rotateX(45deg);}
+  
+  .img-comp-container {
+bottom:0;
+  position: relative;
+  height:100vh;
+}
+
+.img-comp-img {
+  position: absolute;
+  width: auto;
+  height: 100vh;
+  overflow:hidden;
+}
+
+.img-comp-img img {
+  width:auto;
+  height:100vh;
+  display:block;
+  vertical-align:middle;
+}
+
+.img-comp-slider {
+	background-position:48% 55%;
+	background-image:url("/falls/logo.png");
+	background-size:100vw;
+  position: absolute;
+  z-index:9;
+  cursor: ew-resize;
+  /*set the appearance of the slider:*/
+  width: 40vw;
+  height: 10em;
+  opacity: 0.9;
+}
+.prev, .next {
+	z-index:5;
+  cursor: pointer;
+position: absolute;
+  top: 50%;
+    width: auto;
+  padding:16px;
+  margin-top: -22px;
+  font-size: 4rem;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  text-decoration:none;
+}
+#ss1,#ss2{display:none;
+  line-height: 1.6;
+z-index:5;
+  cursor: pointer;
+position: absolute;
+top:-16px;
+  font-size: 1.5rem;
+  padding: 1.5em;
+	color:white;
+	width:56vw;
+  letter-spacing: 3px;
+
+}
+#ss1{
+left:0;
+}
+#ss2{
+	right:0;}
+#ss1 p{
+    filter: blur(1px);
+	  -webkit-text-stroke: 1px lightblue;
+font-family: 'Days one', sans-serif;
+   	text-shadow: 5px 5px 20px darkcyan;
+}
+#ss2 p{
+    filter: blur(1px);
+font-family: 'Days One', sans-serif;
+  	text-shadow: 5px 5px 20px blue;}
+
+.prev:hover{	text-shadow: -5px -5px 20px lavender;}
+
+
+.next:hover{
+	text-shadow: 5px 5px 20px blue;}
+.prev{
+	left:0;
+	color:white;}
+.next {
+  right: 0;
+    color: black;
+  border-radius: 3px 0 0 3px;
+}
+.description{position:absolute;
+color: gold;
+   font-family: 'Orbitron', sans-serif;
+}
+</style>
+<script>
+function initComparisons() {
+  var x, i;
+  /*find all elements with an "overlay" class:*/
+  x = document.getElementsByClassName("img-comp-overlay");
+  for (i = 0; i < x.length; i++) {
+    /*once for each "overlay" element:
+    pass the "overlay" element as a parameter when executing the compareImages function:*/
+    compareImages(x[i]);
+  }
+  function compareImages(img) {
+    var slider, img, clicked = 0, w, h;
+    /*get the width and height of the img element*/
+    w = img.offsetWidth;
+    h = img.offsetHeight;
+    /*set the width of the img element to 50%:*/
+    img.style.width = (w / 2) + "px";
+    /*create slider:*/
+    slider = document.createElement("DIV");
+    slider.setAttribute("class", "img-comp-slider");
+    /*insert slider*/
+    img.parentElement.insertBefore(slider, img);
+    /*position the slider in the middle:*/
+    slider.style.top = (h / 2) - (slider.offsetHeight / 2) + "px";
+    slider.style.left = (w / 2) - (slider.offsetWidth / 2) + "px";
+    /*execute a function when the mouse button is pressed:*/
+    slider.addEventListener("mousedown", slideReady);
+    /*and another function when the mouse button is released:*/
+    window.addEventListener("mouseup", slideFinish);
+    /*or touched (for touch screens:*/
+    slider.addEventListener("touchstart", slideReady);
+    /*and released (for touch screens:*/
+    window.addEventListener("touchstop", slideFinish);
+    function slideReady(e) {
+			  $(".prev, .next").hide();
+
+      /*prevent any other actions that may occur when moving over the image:*/
+      e.preventDefault();
+      /*the slider is now clicked and ready to move:*/
+      clicked = 1;
+      /*execute a function when the slider is moved:*/
+      window.addEventListener("mousemove", slideMove);
+      window.addEventListener("touchmove", slideMove);
+    }
+    function slideFinish() {
+      /*the slider is no longer clicked:*/
+      clicked = 0;
+	  $(".prev, .next").show();
+    }
+    function slideMove(e) {
+      var pos;
+      /*if the slider is no longer clicked, exit this function:*/
+      if (clicked == 0) return false;
+      /*get the cursor's x position:*/
+      pos = getCursorPos(e)
+      /*prevent the slider from being positioned outside the image:*/
+      if (pos < 0) pos = 0;
+      if (pos > w) pos = w;
+      /*execute a function that will resize the overlay image according to the cursor:*/
+      slide(pos);
+	  vak(pos);
+    }
+    function getCursorPos(e) {
+      var a, x = 0;
+      e = e || window.event;
+      /*get the x positions of the image:*/
+      a = img.getBoundingClientRect();
+      /*calculate the cursor's x coordinate, relative to the image:*/
+      x = e.pageX - a.left;
+      /*consider any page scrolling:*/
+      x = x - window.pageXOffset;
+      return x;
+    }
+	 function vak(x) {
+      var kader=$(window).width();
+	  var p= kader / 2;
+	  var pg= p + (p/3);
+	  var pk= p - (p/3);
+	if (x > pg){$("#ss1").fadeIn('2000');
+			$("#ss2").hide();
+} 
+	else if(x < pk){$("#ss2").fadeIn('2000');
+			$("#ss1").hide();
+} 
+	else if(x > pk || x < pg){
+		$("#ss2").hide();
+		$("#ss1").hide();
+		}
+	 }
+	
+    function slide(x) {
+      /*resize the image:*/
+      img.style.width = x + "px";
+      /*position the slider:*/
+      slider.style.left = img.offsetWidth - (slider.offsetWidth / 2) + "px";
+    }
+  }
+}
+</script>
+</head>
+<body>
+<div class="img-comp-container">
+  <div class="img-comp-img">
+    <img src="falls/bgslide.png">
+  </div>
+  <div class="img-comp-img img-comp-overlay" style="background-color:black">
+    <img src="falls/bgslideold.png">
+  </div>
+</div>
+<div id="ss1"><p>IN AUTUMN 2017 THE FIRST SEASON APPEARED.</p><p>
+ A LIMITED-RUN SERIES OF TWELVE EPISODES,<BR>BACK THEN EACH WEBSCREENED ONLY FOR A WEEKLY 24 HOURS.
+ALL EPISODES ARE NOW ON VIEW HERE,EVERYDAY, ONLY AT SUNDOWN, <br>WHEREVER YOU ARE.</p>
+<img src="/falls/allthetime.png" width="80%" style="filter:none!important;">
+</div>
+<div id="ss2"><p>AS A SEQUEL TO THE FIRST SEASON,<br>A NEW EDITION OF VIDEO-NOVELAS APPEARS.<br>
+   SOMETIMES SCREENED IN THE PHYSICAL WORLD AND SOMETIMES STREAMED ONLINE FOR A LIMITED TIME.
+   <BR>UPCOMING: </p></div>
+  <a href="/zrama2.html" class="prev">&#8592;</a>
+<a href="javascript:void(0)" class="next">&#8594;</a>
+
+<script>
+/*Execute a function that will execute an image compare function for each element with the img-comp-overlay class:*/
+initComparisons();
+
+</script>
+<script>
+$(document).ready(function(){
+
+
+$('.prev').hover(function(){
+$(this).css('transform','rotate(-90deg)'); 
+}, function(){ 
+$(this).css('transform','none');
+ });
+$('.next').hover(function(){
+$(this).css('transform','rotate(-90deg)'); 
+}, function(){ 
+$(this).css('transform','none');
+ });
+});
+
+</script>
+
+</body>
+</html>
