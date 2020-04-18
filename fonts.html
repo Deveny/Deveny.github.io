@@ -1,0 +1,402 @@
+<html>
+
+<head>
+  <meta charset=UTF-8>
+  <title>Text Effects</title>
+
+  <style>
+      @font-face {
+  font-family: "Round";
+  src: url("fonts/ArialRoundedBold.ttf");
+}
+    *{lighting-color:#eee}
+    body{text-align:center;
+      font-family: round;}
+    svg{position:absolute;top:-999em}
+    h1{position:relative;letter-spacing:.07em;font-size:5em;font-weight:normal;margin:.1em auto}
+    h1:before,h1:after{position:absolute;top:0;left:0;right:0}
+    .gallery{background:#eee}
+    .gallery img{pointer-events:none}
+    filter{color-interpolation-filters:sRGB}
+    
+    .outlinedA{color:hsl(200,75%,35%);text-shadow:0 0 1px,
+    -1px -1px 1px hsl(200,75%,45%),
+    0 -1px 1px hsl(200,75%,40%),
+    -1px 0 1px hsl(200,75%,35%),
+    1px -1px 1px hsl(200,75%,35%),
+    1px 0 1px hsl(200,75%,30%),
+    1px 1px 1px hsl(200,75%,30%),
+    0 1px 1px hsl(200,75%,30%),
+    -1px 1px 1px hsl(200,75%,30%),
+    
+    -2px -2px 1px hsl(200,75%,75%),
+    -2px -1px 1px hsl(200,75%,60%),
+    -2px 0 1px hsl(200,75%,60%),
+    -1px -2px 1px hsl(200,75%,50%),
+    0 -2px 1px hsl(200,75%,50%),
+    1px -2px 1px hsl(200,75%,50%),
+    2px -2px 1px hsl(200,75%,35%),
+    2px -1px 1px hsl(200,75%,35%),
+    2px 0 1px hsl(200,75%,30%),
+    2px 1px 1px hsl(200,75%,10%),
+    2px 2px 1px hsl(200,75%,10%),
+    1px 2px 1px hsl(200,75%,15%),
+    0 2px 1px hsl(200,75%,10%),
+    -1px 2px 1px hsl(200,75%,20%),
+    -2px 2px 1px hsl(200,75%,20%),
+    -2px 1px 1px hsl(200,75%,10%),
+    
+    -3px -3px 1px #006,
+    -2px -3px 1px #006,
+    -1px -3px 1px #006,
+    0 -3px 1px #006,
+    1px -3px 1px #006,
+    2px -3px 1px #006,
+    3px -3px 1px #006,
+    3px -2px 1px #006,
+    3px -1px 1px #006,
+    3px 0 1px #006,
+    3px 1px 1px #006,
+    3px 2px 1px #006,
+    3px 3px 2px #006,
+    2px 3px 1px #006,
+    1px 3px 1px #006,
+    0 3px 1px #006,
+    -1px 3px 1px #006,
+    -2px 3px 1px #006,
+    -3px 3px 1px #006,
+    -3px 2px 1px #006,
+    -3px 1px 1px #006,
+    -3px 0 1px #006,
+    -3px -1px 1px #006,
+    -3px -2px 1px #006
+    }
+    .outlinedA:before{content:'OutlinedA';top:-4px;margin-left:-4px;color:transparent;text-shadow:1px 1px 3px hsl(200,75%,75%);opacity:.4}
+    .mid:after{content:'OutlinedA';color:#000;opacity:.5;text-shadow:0 0 1px}
+    
+    .outlinedB{color:hsl(10,100%,40%);text-shadow:0 0 2px,
+    0 -1px 1px hsl(40,100%,80%),
+    -1px -1px 1px hsl(10,100%,40%),
+    1px -1px 1px hsl(10,100%,40%),
+    1px 0 1px hsl(10,100%,40%),
+    0 -1px 1px hsl(10,100%,40%),
+    0 1px 1px hsl(10,100%,20%),
+    1px 1px 1px hsl(10,100%,40%),
+    -1px 1px 1px hsl(10,100%,40%),
+    
+    -2px -2px 1px hsl(10,100%,20%),
+    -1px -2px 1px hsl(10,100%,20%),
+    0 -2px 1px hsl(10,100%,20%),
+    1px -2px 1px hsl(10,100%,20%),
+    2px -2px 1px hsl(10,100%,20%),
+    2px -1px 1px hsl(10,100%,20%),
+    2px 0 1px hsl(10,100%,20%),
+    2px 1px 1px hsl(10,100%,20%),
+    2px 2px 1px hsl(10,100%,20%),
+    1px 2px 1px hsl(10,100%,20%),
+    0 2px 3px hsl(10,100%,20%),
+    -1px 2px 1px hsl(10,100%,20%),
+    -2px 2px 1px hsl(10,100%,20%),
+    -2px 1px 1px hsl(10,100%,20%),
+    -2px 0 1px hsl(10,100%,20%),
+    -2px -1px 1px hsl(10,100%,20%)
+    }
+    .outlinedB:before{content:'OutlinedB';top:-3px;color:transparent;text-shadow:0 1px 2px #ff6;opacity:.4}
+    .outlinedB:after{content:'OutlinedB';top:.3em;color:transparent;text-shadow:0 0 6px rgba(0,0,0,.6),0 0 8px rgba(0,0,0,.8);transform:scaleY(.5);z-index:-1}
+    
+    .hsl{color:hsl(184,80%,25%);text-shadow:0 0 1px,
+    /*highlight*/
+    -1px -1px 1px hsl(184,80%,50%),
+    0 -1px 1px hsl(184,80%,55%),
+    1px -1px 1px hsl(184,80%,50%),
+    /*light shadow*/
+    1px 1px 1px hsl(184,80%,10%),
+    0 1px 1px hsl(184,80%,10%),
+    -1px 1px 1px hsl(184,80%,10%),
+    /*outline*/
+    -2px -2px 1px hsl(184,80%,15%),
+    -1px -2px 1px hsl(184,80%,15%),
+    0 -2px 1px hsl(184,80%,15%),
+    1px -2px 1px hsl(184,80%,15%),
+    2px -2px 1px hsl(184,80%,15%),
+    2px -1px 1px hsl(184,80%,15%),
+    2px 0 1px hsl(184,80%,15%),
+    2px 1px 1px hsl(184,80%,15%),
+    -2px 0 1px hsl(184,80%,15%),
+    -2px -1px 1px hsl(184,80%,15%),
+    -2px 1px 1px hsl(184,80%,15%),
+    /*dark shadow*/
+    2px 2px 2px hsl(184,80%,5%),
+    1px 2px 2px hsl(184,80%,5%),
+    0 2px 2px hsl(184,80%,5%),
+    -1px 2px 2px hsl(184,80%,5%),
+    -2px 2px 2px hsl(184,80%,5%)
+    }
+    
+    .test{font-weight:bold;color:#000/*FF*/;text-shadow:0 0 1px,
+    2px  0   1px #98c0e8,  0   2px  1px #083058,  2px  1px  1px #98c0e8,  1px  2px  1px #083058,  2px  2px  1px #487098,
+    3px  1px 1px #98c0e8,  1px 3px  1px #083058,  3px  2px  1px #98c0e8,  2px  3px  1px #083058,  3px  3px  1px #487098,
+    4px  2px 1px #98c0e8,  2px 4px  1px #083058,  4px  3px  1px #98c0e8,  3px  4px  1px #083058,  4px  4px  1px #487098,
+    5px  3px 1px #98c0e8,  3px 5px  1px #083058,  5px  4px  1px #98c0e8,  4px  5px  1px #083058,  5px  5px  1px #487098,
+    6px  4px 1px #98c0e8,  4px 6px  1px #083058,  6px  5px  1px #98c0e8,  5px  6px  1px #083058,  6px  6px  1px #487098,
+    7px  5px 1px #98c0e8,  5px 7px  1px #083058,  7px  6px  1px #98c0e8,  6px  7px  1px #083058,  7px  7px  1px #487098,
+    8px  6px 1px #98c0e8,  6px 8px  1px #083058,  8px  7px  1px #98c0e8,  7px  8px  1px #083058,  8px  8px  1px #487098,
+    9px  7px 1px #98c0e8,  7px 9px  1px #083058,  9px  8px  1px #98c0e8,  8px  9px  1px #083058,  9px  9px  1px #487098,
+    10px 8px 1px #98c0e8,  8px 10px 1px #083058,  10px 9px  1px #98c0e8,  9px  10px 1px #083058,  10px 10px 1px #487098,
+    11px 9px 1px #98c0e8,  9px 11px 1px #083058,  11px 10px 1px #98c0e8,  10px 11px 1px #083058,  11px 11px 1px #487098,
+    2px -1px 1px #666,
+    3px  0   1px #666,
+    4px  1px 1px #666,
+    5px  2px 1px #666,
+    6px  3px 1px #666,
+    7px  4px 1px #666,
+    8px  5px 1px #666,
+    9px  6px 1px #666,
+    10px 7px 1px #666,
+    11px 8px 1px #666,
+    12px 9px 1px #666,
+    12px 10px 1px #666,
+    11px 11px 1px #666
+    }
+    .test:before,.test:after{content:'Test'}
+    .test:before{color:rgb(40,80,120);text-shadow:0 0 1px,-1px -1px 1px #000,0 -1px 1px #000,1px -1px 1px #000,1px 0 1px #000,1px 1px 1px #000,0 1px 1px #000,-1px 1px 1px #000,-1px 0 1px #000}
+    .test:after{color:rgba(40,80,120,.1);text-shadow:-1px 0 1px rgba(40,80,120,.8),1px -1px 1px rgba(255,255,255,.8);-webkit-filter:url(#light-top);filter:url(#light-top)}
+    
+    .bottom{font-weight:bold;color:#000/*FF*/;text-shadow:0 0 1px,
+    2px  0   1px #083058,  0   2px  1px #98c0e8,  2px  1px  1px #083058,  1px  2px  1px #98c0e8,  2px  2px  1px #487098,
+    3px  1px 1px #083058,  1px 3px  1px #98c0e8,  3px  2px  1px #083058,  2px  3px  1px #98c0e8,  3px  3px  1px #487098,
+    4px  2px 1px #083058,  2px 4px  1px #98c0e8,  4px  3px  1px #083058,  3px  4px  1px #98c0e8,  4px  4px  1px #487098,
+    5px  3px 1px #083058,  3px 5px  1px #98c0e8,  5px  4px  1px #083058,  4px  5px  1px #98c0e8,  5px  5px  1px #487098,
+    6px  4px 1px #083058,  4px 6px  1px #98c0e8,  6px  5px  1px #083058,  5px  6px  1px #98c0e8,  6px  6px  1px #487098,
+    7px  5px 1px #083058,  5px 7px  1px #98c0e8,  7px  6px  1px #083058,  6px  7px  1px #98c0e8,  7px  7px  1px #487098,
+    8px  6px 1px #083058,  6px 8px  1px #98c0e8,  8px  7px  1px #083058,  7px  8px  1px #98c0e8,  8px  8px  1px #487098,
+    9px  7px 1px #083058,  7px 9px  1px #98c0e8,  9px  8px  1px #083058,  8px  9px  1px #98c0e8,  9px  9px  1px #487098,
+    10px 8px 1px #083058,  8px 10px 1px #98c0e8,  10px 9px  1px #083058,  9px  10px 1px #98c0e8,  10px 10px 1px #487098,
+    11px 9px 1px #083058,  9px 11px 1px #98c0e8,  11px 10px 1px #083058,  10px 11px 1px #98c0e8,  11px 11px 1px #487098,
+    11px 11px 1px #666,
+    11px 12px 1px #666,
+    10px 12px 1px #666,
+    9px 12px 1px #666,
+    8px 11px 1px #666,
+    7px 10px 1px #666,
+    6px 9px 1px #666,
+    5px 8px 1px #666,
+    4px 7px 1px #666,
+    3px 6px 1px #666,
+    2px 5px 1px #666,
+    1px 4px 1px #666,
+    0 3px 1px #666,
+    -1px 2px 1px #666,
+    20px 8px 8px rgba(0,0,0,.7)}
+    .bottom:before,.bottom:after{content:'Bottom Light'}
+    .bottom:before{color:rgb(40,80,120);text-shadow:0 0 1px,-1px -1px 1px #003,0 -1px 1px #003,1px -1px 1px #003,1px 0 1px #003,1px 1px 1px #003,0 1px 1px #003,-1px 1px 1px #003,-1px 0 1px #003}
+    .bottom:after{color:rgba(40,80,120,.1);text-shadow:1px -1px 1px rgba(40,80,120,.8),-1px 1px 1px rgba(255,255,255,.8)}
+    
+    .dilate{color:red;text-shadow:0 0 1px,-1px -1px 1px #300,0 -1px 1px #300,1px -1px 1px #300,1px 0 1px #300,1px 1px 1px #300,0 1px 1px #300,-1px 1px 1px #300,-1px 0 1px #300}
+    .dilate:before,.dilate:after{content:'Dilate';z-index:-1}
+    .dilate:before{-webkit-filter:url(#dilate10);filter:url(#dilate10)}
+    .dilate:after{color:#ddd;-webkit-filter:url(#dilate6);filter:url(#dilate6)}
+    
+    .erode{color:#369;font-weight:bold;text-shadow:0 0 1px,1px 1px 1px #000,2px 2px 3px #000}
+    .erode:after{content:'Erode';color:#fff;text-shadow:0 0 1px #fff;-webkit-filter:url(#erode2);filter:url(#erode2)}
+    
+    .distant1{color:green;font-weight:bold;text-shadow:0 0 1px,-1px -1px 1px #030,0 -1px 1px #030,1px -1px 1px #030,1px 0 1px #030,1px 1px 1px #030,0 1px 1px #030,-1px 1px 1px #030,-1px 0 1px #030}
+    .distant1:after{content:'Distant Light';text-shadow:0 0 1px;-webkit-filter:url(#distant1);filter:url(#distant1)}
+    
+    .distant-top{font-weight:bold;color:orange;
+    text-shadow:0 0 1px,-1px -1px 1px #030,0 -1px 1px #030,1px -1px 1px #030,1px 0 1px #030,1px 1px 1px #030,0 1px 1px #030,-1px 1px 1px #030,-1px 0 1px #030}
+    .distant-top:after{content:'Distant Top';text-shadow:0 0 1px;-webkit-filter:url(#distant-top);filter:url(#distant-top)}
+    
+    .distant-front{font-weight:bold;color:#840;text-shadow:0 0 1px,-1px -1px 1px #000,0 -1px 1px #000,1px -1px 1px #000,1px 0 1px #000,1px 1px 1px #000,0 1px 1px #000,-1px 1px 1px #000,-1px 0 1px #000}
+    .distant-front:after{content:'Distant Front';text-shadow:0 0 1px;-webkit-filter:url(#distant-front);filter:url(#distant-front)}
+    
+    .diff1{display:inline-block;font-weight:bold;color:#def;text-shadow:0 0 1px,-1px -1px 1px #000,0 -1px 1px #000,1px -1px 1px #000,1px 0 1px #000,1px 1px 1px #000,0 1px 1px #000,-1px 1px 1px #000,-1px 0 1px #000;-webkit-filter:url(#diff1);filter:url(#diff1);/*background:#def;padding:0 .2em*/}
+    
+    .bevel{font-family:round;color:rgba(40,80,120,.9);
+    text-shadow:-1px -1px 1px #000,0 -1px 1px #000,
+    1px -1px 1px #000,1px 0 1px #000,1px 1px 1px #000,
+    0 1px 1px #000,-1px 1px 1px #000,-1px 0 1px #000,0 0 4px #000}
+    .bevel,.bevel:after{-webkit-filter:url(#light2);filter:url(#light2)}
+    .bevel:after{content:"Bevel";text-shadow:none;opacity:1}
+    /*.darkbg .bevel{text-shadow:-1px -1px 1px #bbb,
+    0 -1px 1px #bbb,1px -1px 1px #bbb,1px 0 1px #bbb,
+    1px 1px 1px #bbb,0 1px 1px #bbb,-1px 1px 1px #bbb,
+    -1px 0 1px #bbb,0 0 4px #bbb}*/
+    
+    .light5{font-weight:bold;font-family:round;color:#777;text-shadow:0 0 1px,-1px -1px 1px #000,0 -1px 1px #000,1px -1px 1px #000,1px 0 1px #000,1px 1px 1px #000,0 1px 1px #000,-1px 1px 1px #000,0 -1px 1px #000,2px 2px 4px #000,0 0 2px #000;-webkit-filter:url(#light5);filter:url(#light5)}
+    #light5 *{lighting-color:#ccc}
+    
+    .light4{font-weight:bold;font-family:round;color:#770;text-shadow:0 0 1px,-1px -1px 1px #000,0 -1px 1px #000,1px -1px 1px #000,1px 0 1px #000,1px 1px 1px #000,0 1px 1px #000,-1px 1px 1px #000,0 -1px 1px #000,2px 2px 4px #000,0 0 2px #000;-webkit-filter:url(#light4);filter:url(#light4)}
+    #light4 *{lighting-color:#bef}
+    
+    .light6{font-weight:bold;color:#999;text-shadow:0 0 1px,-1px -1px 1px #000,0 -1px 1px #000,1px -1px 1px #000,1px 0 1px #000,1px 1px 1px #000,0 1px 1px #000,-1px 1px 1px #000,0 -1px 1px #000,-2px -2px 2px #000;-webkit-filter:url(#light6);filter:url(#light6)}
+    #light6 *{lighting-color:yellow}
+    
+    .erodilate{font-weight:bold;color:#ddd;text-shadow:0 0 1px}
+    .erodilate:before,.erodilate:after{content:attr(data-text);color:#369}
+    .erodilate:before{z-index:-1;-webkit-filter:url(#dilate4);filter:url(#dilate4);text-shadow:0 0 1px,1px 1px 2px #000,2px 2px 2px #000}
+    .erodilate:after{-webkit-filter:url(#erode2);filter:url(#erode2)}
+    
+    .border{display:inline-block;font-weight:bold;line-height:1;text-align:center;padding:.16em .26em}
+    .border:before{content:'';bottom:0;z-index:-1;border:solid #b92;border-width:.16em .1em .1em .16em;border-radius:.4em;
+    box-shadow:0 0 1px 1px #860,2px 2px 1px rgba(255,255,255,.5),3px 3px 4px #000,inset 1px 1px 1px rgba(255,255,255,.5),inset 3px 3px 4px #000;-webkit-filter:url(#light-top-left);filter:url(#light-top-left)}
+    .border:after{content:'Border';top:.16em;color:green;text-shadow:0 0 1px #000,1px 0 1px rgba(255,255,255,.8),3px 3px 4px #000;-webkit-filter:url(#light1);filter:url(#light1)}
+  </style>
+</head>
+
+<body>
+
+  <svg>
+    <filter id=light-top>
+      <feGaussianBlur in='SourceAlpha' stdDeviation='4' result='B' />
+      <feSpecularLighting surfaceScale='4' specularExponent='20' in='B' result='L'>
+        <fePointLight x='700' y='-1300' z='1000' />
+      </feSpecularLighting>
+      <feComposite in='L' in2='SourceAlpha' operator='in' result='L' />
+      <feComposite in='SourceGraphic' in2='L' operator='arithmetic' k1='0' k2='1' k3='1' k4='0' />
+    </filter>
+
+    <filter id=light1>
+      <feGaussianBlur in='SourceAlpha' stdDeviation='1' result='B' />
+      <feSpecularLighting in='B' surfaceScale='4' specularExponent='14' result='S'>
+        <fePointLight x='-5000' y='-8000' z='2000' />
+      </feSpecularLighting>
+      <feComposite in='S' in2='SourceAlpha' operator='in' result='L' />
+      <feComposite in='SourceGraphic' in2='L' operator='arithmetic' k1='0' k2='1' k3='1' k4='0' />
+    </filter>
+
+    <filter id=light2>
+      <feGaussianBlur in='SourceAlpha' stdDeviation='2' result='B' />
+      <feSpecularLighting in='B' surfaceScale='4' specularExponent='14' result='S'>
+        <fePointLight x='-8000' y='-10000' z='5000' />
+      </feSpecularLighting>
+      <feComposite in='S' in2='SourceAlpha' operator='in' result='L' />
+      <feComposite in='SourceGraphic' in2='L' operator='arithmetic' k1='0' k2='1' k3='1' k4='0' />
+    </filter>
+
+    <filter id=light-top-left>
+      <feGaussianBlur in='SourceAlpha' stdDeviation='4' result='B' />
+      <feSpecularLighting in='B' surfaceScale='4' specularExponent='20' result='S'>
+        <fePointLight x='-700' y='-1300' z='1000' />
+      </feSpecularLighting>
+      <feComposite in='S' in2='SourceAlpha' operator='in' result='L' />
+      <feComposite in='SourceGraphic' in2='L' operator='arithmetic' k1='0' k2='1' k3='1' k4='0' />
+    </filter>
+
+    <filter id=distant1>
+      <feGaussianBlur in='SourceAlpha' stdDeviation='4' result='B' />
+      <feSpecularLighting in='B' surfaceScale='2' specularConstant='1.2' specularExponent='12' result='S'>
+        <feDistantLight azimuth='200' elevation='20' />
+      </feSpecularLighting>
+      <feComposite in='S' in2='SourceAlpha' operator='in' result='L' />
+      <feComposite in='SourceGraphic' in2='L' operator='arithmetic' k1='0' k2='1' k3='1' k4='0' />
+    </filter>
+
+    <filter id=distant-top>
+      <feGaussianBlur in='SourceAlpha' stdDeviation='34 12' result='B' />
+      <feSpecularLighting in='B' surfaceScale='10' specularExponent='24' result='S'>
+        <feDistantLight azimuth='90' elevation='124' />
+      </feSpecularLighting>
+      <feComposite in='S' in2='SourceAlpha' operator='in' result='L' />
+      <feComposite in='SourceGraphic' in2='L' operator='arithmetic' k1='0' k2='1' k3='1' k4='0' />
+    </filter>
+
+    <filter id=distant-front>
+      <feGaussianBlur in='SourceAlpha' stdDeviation='24 8' result='B' />
+      <feSpecularLighting in='B' surfaceScale='14' specularExponent='32' result='S'>
+        <feDistantLight azimuth='90' elevation='90' />
+      </feSpecularLighting>
+      <feComposite in='S' in2='SourceAlpha' operator='in' result='L' />
+      <feComposite in='SourceGraphic' in2='L' operator='arithmetic' k1='0' k2='1' k3='1' k4='0' />
+    </filter>
+
+    <filter id=diff1>
+      <feDiffuseLighting in='SourceGraphic' diffuseConstant='1.2' result='D'>
+        <fePointLight x='100' y='0' z='100' />
+      </feDiffuseLighting>
+      <feComposite in='D' in2='SourceAlpha' operator='in' result='L' />
+      <feComposite in='SourceGraphic' in2='L' operator='arithmetic' k1='1' k2='0' k3='0' k4='0' />
+    </filter>
+
+    <filter id=dilate4>
+      <feMorphology operator='dilate' radius='4' />
+    </filter>
+    <filter id=dilate6>
+      <feMorphology operator='dilate' radius='6' />
+    </filter>
+    <filter id=dilate10>
+      <feMorphology operator='dilate' radius='10' />
+    </filter>
+    <filter id=erode2>
+      <feMorphology operator='erode' radius='2' />
+    </filter>
+
+    <filter id=light4>
+      <feComposite result='C' operator='arithmetic' k1='0' k2='1' k3='0' k4='0' />
+      <feColorMatrix type='luminanceToAlpha' />
+      <feDiffuseLighting surfaceScale='4' diffuseConstant='1.6'>
+        <feDistantLight azimuth='225' elevation='28' />
+      </feDiffuseLighting>
+      <feComposite in2='C' operator='in' />
+      <feBlend result='A' in2='C' mode='multiply' />
+      <feGaussianBlur stdDeviation='2' />
+      <feSpecularLighting specularExponent='128'>
+        <feDistantLight azimuth='45' elevation='68' />
+      </feSpecularLighting>
+      <feComposite in2='A' operator='in' />
+      <feComposite in2="A" k3='1' k2='1' operator='arithmetic' />
+    </filter>
+
+    <filter id=light5>
+      <feComposite result='C' operator='arithmetic' k1='0' k2='1' k3='0' k4='0' />
+      <feColorMatrix type='luminanceToAlpha' />
+      <feDiffuseLighting surfaceScale='4' diffuseConstant='1.6'>
+        <feDistantLight azimuth='225' elevation='28' />
+      </feDiffuseLighting>
+      <feComposite in2='C' operator='in' />
+      <feBlend result='A' in2='C' mode='multiply' />
+      <feGaussianBlur stdDeviation='4' />
+      <feSpecularLighting specularExponent='128'>
+        <feDistantLight azimuth='225' elevation='72' />
+      </feSpecularLighting>
+      <feComposite in2='A' operator='in' />
+      <feComposite in2='A' k3='1' k2='1' operator='arithmetic' />
+    </filter>
+
+    <filter id=light6>
+      <feComposite result='C' operator='arithmetic' k1='0' k2='1' k3='0' k4='0' />
+      <feColorMatrix type='luminanceToAlpha' />
+      <feDiffuseLighting surfaceScale='4' diffuseConstant='1.6'>
+        <feDistantLight azimuth='45' elevation='28' />
+      </feDiffuseLighting>
+      <feComposite in2='C' operator='in' />
+      <feBlend result='A' in2='C' mode='multiply' />
+      <feGaussianBlur stdDeviation='1.5' />
+      <feSpecularLighting specularExponent='128'>
+        <feDistantLight azimuth='225' elevation='68' />
+      </feSpecularLighting>
+      <feComposite in2='A' operator='in' />
+      <feComposite in2='A' k3='1' k2='1' operator='arithmetic' />
+    </filter>
+  </svg>
+
+  <h1 class=outlinedA>OutlinedA</h1>
+  <h1 class='outlinedA mid'>OutlinedA</h1>
+  <h1 class=outlinedB>OutlinedB</h1>
+  <h1 class=hsl>Hsl Colors</h1>
+  <h1 class=test>Test</h1>
+  <h1 class=bottom>Bottom Light</h1>
+  <h1 class=dilate>Dilate</h1>
+  <h1 class=erode>Erode</h1>
+  <h1 class=erodilate data-text=Erodilate>Erodilate</h1>
+  <h1 class=distant1>Distant Light</h1>
+  <h1 class=distant-top>Distant Top</h1>
+  <h1 class=distant-front>Distant Front</h1>
+  <h1 class=diff1>Diffused Light</h1>
+  <h1 class=bevel>Bevel</h1>
+  <h1 class=light5>Embossed ?</h1>
+  <h1 class=light6>Text Lights</h1>
+  <h1 class=light4>IN DEEP</h1>
+  <h1 class=border>Border</h1>
+  <br> See similar pens at <a href=https://codepen.io/nokiss/pens/popular target=_blank>Codepen</a>
+  <br> See more text effects at <a href=http://users.atw.hu/nyejani/gallery/gallery.htm target=_blank>nokiss</a>
