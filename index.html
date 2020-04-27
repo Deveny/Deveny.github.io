@@ -52,6 +52,7 @@ body {
     overflow-y: scroll;
     box-sizing: content-box;
           scroll-snap-type: y mandatory;
+    scroll-padding: 50% 0 0 0;
             }
             
             
@@ -112,19 +113,23 @@ a {
                 top: 0;
                 text-align: center;
                 z-index: 200;
+                  scroll-snap-align: start;
             }
             .info{
                 position: relative;
                 top:3em;
                 padding: 2em;
                 text-align: center;
+                  scroll-snap-align: start;
+
             }
             .snapshots{
-                overflow-x: scroll;
+overflow: hidden;
                 display: flex;
                 padding: 0em 2em;
                 height: 45vh;
                 margin: 1em 0em 5em 0em;
+                justify-content: center;
             }
             .snapshots img{
                 padding: 0.5em;
